@@ -1,0 +1,39 @@
+Here is the output of the test run:
+
+ ./run_tests.sh
+Feature: Login functionality
+
+  Scenario: Successful login
+    Given I am on the login page
+    When I enter the username "standard_user" and password "secret_sauce"
+    And I click the Login Button
+    Then I am redirected to the Demo Main Page
+    And I verify the App Logo exists
+
+  Scenario: Failed login
+    Given I am on the login page
+    When I enter the username "locked_out_user" and password "secret_sauce"
+    And I click the Login Button
+    Then I verify the Error Message contains the text "Epic sadface: Sorry to say, but you've been locked out."
+
+  Scenario: Order functionality
+    Given I am on the inventory page
+    When user sorts products from high price to low price
+    And user adds highest priced product
+    And user clicks on cart
+    And user clicks on checkout
+    And user enters first name "John"
+    And user enters last name "Doe"
+    And user enters zip code "12345"
+    And user clicks Continue button
+    Then I verify in Checkout overview page if the total amount for the added item is $15.99
+    When user clicks Finish button
+    Then Thank You header is shown in Checkout Complete page
+
+Test Results Summary:
+1 feature passed, 0 failed, 0 skipped
+3 scenarios passed, 0 failed, 0 skipped
+15 steps passed, 0 failed, 0 skipped
+
+
+
